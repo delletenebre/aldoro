@@ -1,0 +1,44 @@
+name: aldoro
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.8
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # поддержка локализации
+  flutter_localizations:
+    sdk: flutter
+  
+  # HTTP-клиент
+  dio: ^5.9.2
+  # управление объектами внутри жизненного цикла [Widget]
+  flutter_hooks:
+  # хранение локальных данных в защищённом хранилище
+  flutter_secure_storage: ^10.0.0
+  # мартшруты внутри приложения
+  go_router: ^17.1.0
+  # реактивное управления состоянием
+  hooks_riverpod: ^3.3.0
+  # поддержка локализации и форматов даты/чисел
+  intl: ^0.20.2
+  # хранение локальных данных
+  shared_preferences: ^2.5.4
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: 'Golos UI'
+      fonts:
+        - asset: fonts/golos-ui_vf.ttf
