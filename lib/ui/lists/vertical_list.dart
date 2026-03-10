@@ -1,3 +1,4 @@
+import 'package:aldoro/ui/lists/horizontal_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,6 +21,13 @@ class VerticalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: 10,
+      itemExtent: 120.0,
+      itemBuilder: (context, index) {
+        return const HorizontalList();
+      },
+    );
   }
 }
