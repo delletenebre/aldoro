@@ -42,11 +42,13 @@ class ListParams {
   final String id;
   final double itemExtent;
   final double spacing;
+  final double padding;
 
   const ListParams({
     required this.id,
     required this.itemExtent,
-    this.spacing = 24.0,
+    this.spacing = 12.0,
+    this.padding = 24.0,
   });
 
   @override
@@ -56,9 +58,10 @@ class ListParams {
     return other is ListParams &&
         other.id == id &&
         other.itemExtent == itemExtent &&
-        other.spacing == spacing;
+        other.spacing == spacing &&
+        other.padding == padding;
   }
 
   @override
-  int get hashCode => Object.hash(id, itemExtent, spacing);
+  int get hashCode => Object.hash(id, itemExtent, spacing, padding);
 }

@@ -33,13 +33,20 @@ class HorizontalList extends ConsumerWidget {
       onLeft: listController.goPrevious,
       onRight: listController.goNext,
       child: ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: params.padding),
+        controller: listController.scrollController,
         scrollDirection: Axis.horizontal,
         itemCount: listState.itemCount,
-        itemExtent: params.itemExtent,
+        itemExtent: params.itemExtent + params.spacing,
         itemBuilder: (context, index) {
-          return Focus(
-            focusNode: listState.focusNodes[index],
-            child: builder(index),
+          return Padding(
+            padding: .only(
+              right: (index == listState.itemCount - 1) ? 0.0 : params.spacing,
+            ),
+            child: Focus(
+              focusNode: listState.focusNodes[index],
+              child: builder(index),
+            ),
           );
         },
       ),

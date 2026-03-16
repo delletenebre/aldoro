@@ -32,7 +32,6 @@ class HomePage extends HookConsumerWidget {
           child: VerticalList(
             params: listParams,
             builder: (index, focusNode) {
-              print('HomePage VerticalList builder: index=$index');
               return NewItemsRowView();
             },
           ),

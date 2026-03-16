@@ -14,7 +14,14 @@ class ItemsNotifier<T> extends AsyncNotifier<List<int>> {
   @override
   Future<List<int>> build() async {
     await Future.delayed(const Duration(seconds: 1));
-    ref.read(horizontalListProvider(params).notifier).addItems([1, 2, 3, 4, 5, 6]);
+    ref.read(horizontalListProvider(params).notifier).addItems([
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+    ]);
     return [];
   }
 }
@@ -32,8 +39,7 @@ class NewItemsRowView extends HookConsumerWidget {
     return HorizontalList(
       focusNode: focusNode,
       params: listParams,
-      builder: (index) =>
-          ListCard(key: ValueKey('list_card_${listParams.id}_$index')),
+      builder: (index) => ListCard(),
     );
   }
 }

@@ -33,8 +33,8 @@ class HorizontalListNotifier<T> extends Notifier<ListState> {
 
   /// смещение для прокрутки к выбранному элементу
   double get _scrollOffset {
-    final itemWidth = params.itemExtent;
     final spacing = params.spacing;
+    final itemWidth = params.itemExtent;
 
     return state.selectedItemIndex * (itemWidth + spacing);
   }
