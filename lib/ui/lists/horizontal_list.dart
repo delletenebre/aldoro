@@ -8,7 +8,7 @@ import 'list_state.dart';
 
 class HorizontalList extends HookConsumerWidget {
   final FocusNode? focusNode;
-  final Widget Function(int index) builder;
+  final Widget Function(int index, FocusNode focusNode) builder;
   final ListParams params;
 
   const HorizontalList({
@@ -51,7 +51,7 @@ class HorizontalList extends HookConsumerWidget {
                     ? 0.0
                     : params.spacing,
               ),
-              child: builder(index),
+              child: builder(index, listController.focusNodes[index]),
             );
           },
         ),

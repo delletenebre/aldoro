@@ -65,8 +65,7 @@ class HorizontalListNotifier<T> extends Notifier<ListState> {
           //_animationComplete = true;
         });
 
-    final focusableItem =
-        focusNodes[state.selectedItemIndex].children.firstOrNull;
+    final focusableItem = focusNodes[state.selectedItemIndex];
     print('focusableItem: $focusableItem');
 
     // if (focusableItem == null) {

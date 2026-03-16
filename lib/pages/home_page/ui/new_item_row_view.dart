@@ -43,7 +43,7 @@ class NewItemsRowView extends HookConsumerWidget {
     return HorizontalList(
       focusNode: focusNode,
       params: listParams,
-      builder: (index) => ListCard(),
+      builder: (index, focusNode) => ListCard(focusNode: focusNode),
     );
   }
 }
