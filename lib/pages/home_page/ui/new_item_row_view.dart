@@ -35,7 +35,7 @@ class NewItemsRowView extends HookConsumerWidget {
     final listParams = ListParams(
       id: 'new_items_row',
       itemExtent: 196.0,
-      spacing: 12.0,
+      spacing: 20.0,
     );
 
     ref.watch(itemsProvider(listParams));

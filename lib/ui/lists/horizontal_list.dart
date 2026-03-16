@@ -39,6 +39,7 @@ class HorizontalList extends HookConsumerWidget {
       child: Container(
         color: isFocused.value ? Colors.blue.withOpacity(0.1) : Colors.red,
         child: ListView.builder(
+          clipBehavior: Clip.none,
           padding: EdgeInsets.symmetric(horizontal: params.padding),
           controller: listController.scrollController,
           scrollDirection: Axis.horizontal,

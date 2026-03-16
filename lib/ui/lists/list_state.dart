@@ -35,7 +35,7 @@ class ListParams {
   const ListParams({
     required this.id,
     required this.itemExtent,
-    this.spacing = 12.0,
+    this.spacing = 20.0,
     this.padding = 24.0,
   });
 
