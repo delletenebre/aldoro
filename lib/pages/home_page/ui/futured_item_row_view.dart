@@ -26,14 +26,14 @@ class ItemsNotifier<T> extends AsyncNotifier<List<int>> {
   }
 }
 
-class NewItemsRowView extends HookConsumerWidget {
+class FuturedItemsRowView extends HookConsumerWidget {
   final FocusNode? focusNode;
-  const NewItemsRowView({super.key, this.focusNode});
+  const FuturedItemsRowView({super.key, this.focusNode});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final listParams = ListParams(
-      id: 'new_items_row',
+      id: 'futured_items_row',
       itemExtent: 196.0,
       spacing: 12.0,
     );
@@ -42,6 +42,7 @@ class NewItemsRowView extends HookConsumerWidget {
 
     return HorizontalList(
       focusNode: focusNode,
+
       params: listParams,
       builder: (index) => ListCard(),
     );

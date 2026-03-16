@@ -92,7 +92,7 @@ class Dpad extends HookWidget {
           }
         }
 
-        return KeyEventResult.ignored;
+        return KeyEventResult.skipRemainingHandlers;
       },
       // onKeyEvent: (node, event) {
       //   final callbacks = {

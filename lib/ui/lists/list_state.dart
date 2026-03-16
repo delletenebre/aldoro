@@ -3,23 +3,13 @@ import 'package:flutter/widgets.dart';
 class ListState {
   final int selectedItemIndex;
   final int itemCount;
-  final List<FocusNode> focusNodes;
 
-  ListState({
-    this.selectedItemIndex = 0,
-    this.itemCount = 0,
-    this.focusNodes = const [],
-  });
+  ListState({this.selectedItemIndex = 0, this.itemCount = 0});
 
-  ListState copyWith({
-    int? selectedItemIndex,
-    int? itemCount,
-    List<FocusNode>? focusNodes,
-  }) {
+  ListState copyWith({int? selectedItemIndex, int? itemCount}) {
     return ListState(
       selectedItemIndex: selectedItemIndex ?? this.selectedItemIndex,
       itemCount: itemCount ?? this.itemCount,
-      focusNodes: focusNodes ?? this.focusNodes,
     );
   }
 
@@ -29,13 +19,11 @@ class ListState {
 
     return other is ListState &&
         other.selectedItemIndex == selectedItemIndex &&
-        other.itemCount == itemCount &&
-        identical(other.focusNodes, focusNodes);
+        other.itemCount == itemCount;
   }
 
   @override
-  int get hashCode =>
-      selectedItemIndex.hashCode ^ itemCount.hashCode ^ focusNodes.hashCode;
+  int get hashCode => selectedItemIndex.hashCode ^ itemCount.hashCode;
 }
 
 class ListParams {

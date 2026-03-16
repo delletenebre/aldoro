@@ -11,7 +11,7 @@ final verticalListProvider = NotifierProvider.autoDispose
 class VerticalListNotifier<T> extends Notifier<ListState> {
   final ListParams params;
   final scrollController = ScrollController();
-  final _focusNodes = <FocusNode>[];
+  final focusNodes = <FocusNode>[];
 
   VerticalListNotifier(this.params);
 
@@ -19,12 +19,12 @@ class VerticalListNotifier<T> extends Notifier<ListState> {
   ListState build() {
     ref.onDispose(() {
       scrollController.dispose();
-      for (final node in _focusNodes) {
+      for (final node in focusNodes) {
         node.dispose();
       }
     });
 
-    return ListState(selectedItemIndex: 0, itemCount: 0, focusNodes: _focusNodes);
+    return ListState(selectedItemIndex: 0, itemCount: 0);
   }
 
   /// смещение для прокрутки к выбранному элементу
@@ -40,24 +40,19 @@ class VerticalListNotifier<T> extends Notifier<ListState> {
 
   /// запрос фокуса на выбранном элементе списка
   void requestCurrentFocus() {
-    state.focusNodes[state.selectedItemIndex].children.firstOrNull
-        ?.requestFocus();
+    focusNodes[state.selectedItemIndex].requestFocus();
   }
 
   void addItems(List<T> items) {
     final newNodes = List.generate(items.length, (_) => FocusNode());
-    _focusNodes.addAll(newNodes);
+    focusNodes.addAll(newNodes);
 
-    state = state.copyWith(
-      itemCount: state.itemCount + items.length,
-      focusNodes: List.of(_focusNodes),
-    );
+    state = state.copyWith(itemCount: state.itemCount + items.length);
   }
 
   void animateToCurrent() {
     final position = _scrollOffset;
     //_animationComplete = false;
-    print(_scrollOffset);
 
     scrollController.position
         .moveTo(
@@ -69,8 +64,7 @@ class VerticalListNotifier<T> extends Notifier<ListState> {
           //_animationComplete = true;
         });
 
-    final focusableItem =
-        state.focusNodes[state.selectedItemIndex].children.firstOrNull;
+    final focusableItem = focusNodes[state.selectedItemIndex];
     print('focusableItem: $focusableItem');
 
     // if (focusableItem == null) {
@@ -81,12 +75,13 @@ class VerticalListNotifier<T> extends Notifier<ListState> {
     //     goNext();
     //   }
     // } else {
-    focusableItem?.requestFocus();
+    focusableItem.requestFocus();
     // }
   }
 
   /// переходим к предыдущему элементу
   KeyEventResult goPrevious() {
+    debugPrint('goPrevious');
     if (state.selectedItemIndex > 0) {
       state = state.copyWith(selectedItemIndex: state.selectedItemIndex - 1);
       animateToCurrent();

@@ -19,7 +19,7 @@ class VerticalList extends ConsumerWidget {
     return Dpad(
       onFocusChange: (hasFocus) {
         if (hasFocus) {
-          //listController.requestLastFocused();
+          listController.requestCurrentFocus();
         }
       },
       onUp: listController.goPrevious,
@@ -32,7 +32,7 @@ class VerticalList extends ConsumerWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: .only(bottom: params.spacing),
-            child: builder(index, listState.focusNodes[index]),
+            child: builder(index, listController.focusNodes[index]),
           );
         },
       ),

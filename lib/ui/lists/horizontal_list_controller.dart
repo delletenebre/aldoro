@@ -11,7 +11,7 @@ final horizontalListProvider = NotifierProvider.autoDispose
 class HorizontalListNotifier<T> extends Notifier<ListState> {
   final ListParams params;
   final scrollController = ScrollController();
-  final _focusNodes = <FocusNode>[];
+  final focusNodes = <FocusNode>[];
 
   HorizontalListNotifier(this.params);
 
@@ -19,16 +19,12 @@ class HorizontalListNotifier<T> extends Notifier<ListState> {
   ListState build() {
     ref.onDispose(() {
       scrollController.dispose();
-      for (final node in _focusNodes) {
+      for (final node in focusNodes) {
         node.dispose();
       }
     });
 
-    return ListState(
-      selectedItemIndex: 0,
-      itemCount: 0,
-      focusNodes: _focusNodes,
-    );
+    return ListState(selectedItemIndex: 0, itemCount: 0);
   }
 
   /// смещение для прокрутки к выбранному элементу
@@ -44,18 +40,14 @@ class HorizontalListNotifier<T> extends Notifier<ListState> {
 
   /// запрос фокуса на выбранном элементе списка
   void requestCurrentFocus() {
-    state.focusNodes[state.selectedItemIndex].children.firstOrNull
-        ?.requestFocus();
+    focusNodes[state.selectedItemIndex].requestFocus();
   }
 
   void addItems(List<T> items) {
     final newNodes = List.generate(items.length, (_) => FocusNode());
-    _focusNodes.addAll(newNodes);
+    focusNodes.addAll(newNodes);
 
-    state = state.copyWith(
-      itemCount: state.itemCount + items.length,
-      focusNodes: List.of(_focusNodes),
-    );
+    state = state.copyWith(itemCount: state.itemCount + items.length);
   }
 
   void animateToCurrent() {
@@ -74,7 +66,7 @@ class HorizontalListNotifier<T> extends Notifier<ListState> {
         });
 
     final focusableItem =
-        state.focusNodes[state.selectedItemIndex].children.firstOrNull;
+        focusNodes[state.selectedItemIndex].children.firstOrNull;
     print('focusableItem: $focusableItem');
 
     // if (focusableItem == null) {

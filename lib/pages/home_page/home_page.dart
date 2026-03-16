@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../providers/locale_provider.dart';
 import '../../ui/lists/aldoro_lists.dart';
 import '../../ui/lists/list_cards/list_row.dart';
+import 'ui/futured_item_row_view.dart';
 import 'ui/new_item_row_view.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -20,7 +21,7 @@ class HomePage extends HookConsumerWidget {
     useEffect(() {
       // Имитируем загрузку данных и добавляем элементы в список
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        listController.addItems([1]);
+        listController.addItems([1, 2]);
       });
 
       return null;
@@ -32,7 +33,10 @@ class HomePage extends HookConsumerWidget {
           child: VerticalList(
             params: listParams,
             builder: (index, focusNode) {
-              return NewItemsRowView();
+              if (index == 0) {
+                return FuturedItemsRowView(focusNode: focusNode);
+              }
+              return NewItemsRowView(focusNode: focusNode);
             },
           ),
         ),
