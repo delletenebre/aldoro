@@ -35,10 +35,11 @@ class AppTheme {
   /// базовая тема оформления
   static final _baseThemeLight = ThemeData(
     useMaterial3: true,
-    brightness: Brightness.light,
+    brightness: Brightness.dark,
     fontFamily: 'Golos UI',
 
     colorScheme: ColorScheme.fromSeed(
+      brightness: Brightness.dark,
       seedColor: seedColor,
       primaryContainer: Color(0xffffffff),
     ).copyWith(primary: seedColor),
@@ -121,5 +122,5 @@ class AppTheme {
   // );
 
   /// тёмная тема оформления
-  static final dark = _baseThemeLight.copyWith(brightness: Brightness.dark);
+  static final dark = _baseThemeLight.copyWith();
 }

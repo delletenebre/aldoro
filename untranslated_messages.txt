@@ -1,1 +1,11 @@
-{}
+{
+  "en": [
+    "newItems",
+    "popular"
+  ],
+
+  "ky": [
+    "newItems",
+    "popular"
+  ]
+}

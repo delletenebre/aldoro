@@ -2,8 +2,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'key_events.dart';
+
 class Dpad extends HookWidget {
-  // final FocusNode? focusNode;
+  final FocusNode? focusNode;
   // final bool? skipTraversal;
   // final bool? descendantsAreTraversable;
   final void Function(bool)? onFocusChange;
@@ -18,7 +20,7 @@ class Dpad extends HookWidget {
 
   const Dpad({
     super.key,
-    // this.focusNode,
+    this.focusNode,
     // this.skipTraversal,
     // this.descendantsAreTraversable,
     this.onFocusChange,
@@ -38,7 +40,7 @@ class Dpad extends HookWidget {
     final pressedAt = useRef(0);
 
     return Focus(
-      // focusNode: focusNode,
+      focusNode: focusNode,
       onFocusChange: onFocusChange,
       // skipTraversal: skipTraversal,
       // descendantsAreTraversable: descendantsAreTraversable,
@@ -74,6 +76,21 @@ class Dpad extends HookWidget {
 
         /// обновляем состояние
         isPressed.value = pressed;
+
+        final callbacks = {
+          KeyEvents.left: onLeft,
+          KeyEvents.right: onRight,
+          KeyEvents.up: onUp,
+          KeyEvents.down: onDown,
+          KeyEvents.select: onSelect,
+          KeyEvents.escape: onBack,
+        };
+
+        for (final entry in callbacks.entries) {
+          if (entry.key) {
+            return entry.value?.call() ?? KeyEventResult.ignored;
+          }
+        }
 
         return KeyEventResult.ignored;
       },

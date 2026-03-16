@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../pages/home_page.dart';
+import '../pages/home_page/home_page.dart';
 import '../pages/navigation_layout.dart';
 import 'auth_provider.dart';
 import 'storage_provider.dart';

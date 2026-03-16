@@ -100,6 +100,18 @@ abstract class AppLocalizations {
     Locale('ru'),
   ];
 
+  /// No description provided for @newItems.
+  ///
+  /// In ru, this message translates to:
+  /// **'Новинки'**
+  String get newItems;
+
+  /// No description provided for @popular.
+  ///
+  /// In ru, this message translates to:
+  /// **'Популярное'**
+  String get popular;
+
   /// No description provided for @yes.
   ///
   /// In ru, this message translates to:

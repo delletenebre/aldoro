@@ -9,6 +9,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get newItems => 'Новинки';
+
+  @override
+  String get popular => 'Популярное';
+
+  @override
   String get yes => 'Yes';
 
   @override

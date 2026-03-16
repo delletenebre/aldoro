@@ -9,6 +9,12 @@ class AppLocalizationsKy extends AppLocalizations {
   AppLocalizationsKy([String locale = 'ky']) : super(locale);
 
   @override
+  String get newItems => 'Новинки';
+
+  @override
+  String get popular => 'Популярное';
+
+  @override
   String get yes => 'Ооба';
 
   @override
